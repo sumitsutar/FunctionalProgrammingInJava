@@ -14,7 +14,7 @@ publishing {
                 def root = asNode()
                 root.appendNode("description", project.name)
                 root.appendNode("name", project.name)
-                root.appendNode("url", proclsject.ext.gitUrl)
+                root.appendNode("url", project.ext.gitUrl)
                 root.children().last() + project.ext.pomConfig
             }
         }
