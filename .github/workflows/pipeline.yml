@@ -27,8 +27,8 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        run: Running one-lineScript!
-
+        run: chmod +x gradlew
+        
       - name: Setup JDK
         uses: actions/setup-java@v1
         with:
@@ -43,13 +43,7 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
           restore-keys: |
             ${{ runner.os }}-gradle
-      
-      - name: Print Current Version
-        run: ./gradlew currentVersion -q -Prelease.quiet
-      
-      - name: Check Dependencies
-        run: ./gradlew dependencyUpdates
-      
+        
       - name: Build
         run: ./gradlew clean assemble
 
