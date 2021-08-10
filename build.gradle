@@ -57,3 +57,7 @@ nexusPublishing {
     }
 }
 
+nexusStaging {
+    serverUrl = "https://s01.oss.sonatype.org/service/local/" //required only for projects registered in Sonatype after 2021-02-24
+}
+
