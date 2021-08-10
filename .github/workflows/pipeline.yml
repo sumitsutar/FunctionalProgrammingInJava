@@ -67,4 +67,4 @@ jobs:
           OSSRH_PGP_SECRET_KEY: ${{ secrets.OSSRH_PGP_SECRET_KEY }}
           OSSRH_PGP_SECRET_KEY_PASSWORD: ${{ secrets.OSSRH_PGP_SECRET_KEY_PASSWORD }}
         run: |
-          ./gradlew publish closeAndReleaseRepository --debug
+          ./gradlew publish closeAndReleaseRepository
