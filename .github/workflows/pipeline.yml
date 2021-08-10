@@ -27,7 +27,7 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        run: Running one-lineScript!
+        run: echo "Running one-lineScript!"
 
       - name: Setup JDK
         uses: actions/setup-java@v1
