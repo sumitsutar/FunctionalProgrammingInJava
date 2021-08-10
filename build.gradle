@@ -2,7 +2,6 @@ plugins {
     id 'java-library'
     id "maven-publish"
     id "io.github.gradle-nexus.publish-plugin" version "1.1.0"
-    id "io.codearte.nexus-staging" version "0.21.1"
 }
 group 'com.functional.programming'
 version '1.0'
