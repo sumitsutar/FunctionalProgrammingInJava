@@ -27,8 +27,8 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        run: echo "Running one-lineScript! ${{ secrets.OSSRH_USERNAME }} ${{ secrets.OSSRH_PASSWORD }} ${{ secrets.OSSRH_PGP_SECRET_KEY }} ${{ secrets.OSSRH_PGP_SECRET_KEY_PASSWORD }}"
-
+        run: chmod +x gradlew
+        
       - name: Setup JDK
         uses: actions/setup-java@v1
         with:
