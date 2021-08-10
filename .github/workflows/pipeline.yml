@@ -43,10 +43,7 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
           restore-keys: |
             ${{ runner.os }}-gradle
-      
-      - name: Print Current Version
-        run: ./gradlew currentVersion -q -Prelease.quiet
-      
+        
       - name: Check Dependencies
         run: ./gradlew dependencyUpdates
       
