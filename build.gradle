@@ -5,7 +5,7 @@ plugins {
     id 'io.codearte.nexus-staging' version '0.30.0'
 }
 group 'com.functional.programming'
-version '1.1'
+version '1.1' + '-SNAPSHOT'
 archivesBaseName = "functional-programming"
 sourceCompatibility = 1.8
 
