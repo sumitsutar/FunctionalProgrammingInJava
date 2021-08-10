@@ -61,5 +61,8 @@ nexusPublishing {
 
 nexusStaging {
     serverUrl = "https://s01.oss.sonatype.org/service/local/" //required only for projects registered in Sonatype after 2021-02-24
+    packageGroup = "io.github.sumitsutar" //optional if packageGroup == project.getGroup()
+    username = System.getenv("OSSRH_USERNAME")
+    password = System.getenv("OSSRH_PASSWORD")
 }
 
