@@ -3,7 +3,7 @@ plugins {
     id 'java-library'
     id "io.github.gradle-nexus.publish-plugin" version "1.1.0"
     id 'io.codearte.nexus-staging' version '0.30.0'
-    id "pl.allegro.tech.build.axion-release" version "1.13.2"
+    id "pl.allegro.tech.build.axion-release" version "1.13.3"
     id "com.github.ben-manes.versions" version "0.38.0"
 }
 
@@ -11,11 +11,10 @@ scmVersion {
     versionCreator "versionWithBranch"
     tag {
         prefix = "functional-programming-"
+        versionSeparator = ''
     }
 }
 project.version = scmVersion.version
-
-
 archivesBaseName = "functional-programming"
 
 
