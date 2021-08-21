@@ -67,5 +67,5 @@ jobs:
           OSSRH_PGP_SECRET_KEY: ${{ secrets.OSSRH_PGP_SECRET_KEY }}
           OSSRH_PGP_SECRET_KEY_PASSWORD: ${{ secrets.OSSRH_PGP_SECRET_KEY_PASSWORD }}
         run: |
-          ./gradlew release -Prelease.customUsername=${{ github.actor }} -Prelease.customPassword=${{ github.token }}
-          ./gradlew publishAllPublicationsToSonatypeRepository closeAndReleaseSonatypeStagingRepository
+          ./gradlew release -Prelease.customUsername=${{ github.actor }} -Prelease.customPassword=${{ github.token }} --info
+          ./gradlew publishAllPublicationsToSonatypeRepository closeAndReleaseSonatypeStagingRepository --info
