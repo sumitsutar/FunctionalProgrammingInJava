@@ -7,6 +7,8 @@ plugins {
     id "com.github.ben-manes.versions" version "0.38.0"
 }
 
+apply from: 'publish.gradle'
+
 scmVersion {
     versionCreator "versionWithBranch"
     tag {
@@ -16,6 +18,31 @@ scmVersion {
 }
 project.version = scmVersion.version
 archivesBaseName = "functional-programming"
+
+ext {
+    gitUrl = "https://github.com/sumitsutar/FunctionalProgrammingInJava"
+    pomConfig = {
+        licenses {
+            license {
+                name "MIT License"
+                url "https://opensource.org/licenses/MIT"
+                distribution "repo"
+            }
+        }
+
+        developers {
+            developer {
+                id "sumitsutar"
+                name "Sumit Sutar"
+                email "sutar.sumit@outlook.com"
+            }
+        }
+
+        scm {
+            url project.ext.gitUrl
+        }
+    }
+}
 
 
 allprojects {
@@ -43,39 +70,13 @@ allprojects {
 
 subprojects {
     apply plugin: "java-library"
-
-    ext {
-        gitUrl = "https://github.com/sumitsutar/FunctionalProgrammingInJava"
-    pomConfig = {
-        licenses {
-            license {
-                name "MIT License"
-                url "https://opensource.org/licenses/MIT"
-                distribution "repo"
-            }
-        }
-
-        developers {
-            developer {
-                id "sumitsutar"
-                name "Sumit Sutar"
-                email "sutar.sumit@outlook.com"
-            }
-        }
-
-        scm {
-            url project.ext.gitUrl
-        }
-    }
-    }
-
 }
 
 nexusPublishing {
     packageGroup = "io.github.sumitsutar"
     repositories {
         sonatype {
-            nexusUrl.set(uri("https://s01.oss.sonatype.org/content/repositories/staging/"))
+            nexusUrl.set(uri("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"))
             snapshotRepositoryUrl.set(uri("https://s01.oss.sonatype.org/content/repositories/snapshots/"))
             username = System.getenv("OSSRH_USERNAME")
             password = System.getenv("OSSRH_PASSWORD")
@@ -84,8 +85,8 @@ nexusPublishing {
 }
 
 nexusStaging {
-    serverUrl = "https://s01.oss.sonatype.org/service/local/" //required only for projects registered in Sonatype after 2021-02-24
     packageGroup = "io.github.sumitsutar" //optional if packageGroup == project.getGroup()
+    serverUrl = "https://s01.oss.sonatype.org/service/local/" //required only for projects registered in Sonatype after 2021-02-24
     username = System.getenv("OSSRH_USERNAME")
     password = System.getenv("OSSRH_PASSWORD")
 }
