@@ -48,7 +48,7 @@ jobs:
        
        # Runs a single command using the runners shell
       - name: Print Current Version
-        run: gradlew currentVersion
+        run: ./gradlew currentVersion
        
       - name: Publish snapshot
         if: github.ref != 'refs/heads/master'
