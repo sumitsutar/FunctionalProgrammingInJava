@@ -57,8 +57,8 @@ jobs:
           OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
           OSSRH_PGP_SECRET_KEY: ${{ secrets.OSSRH_PGP_SECRET_KEY }}
           OSSRH_PGP_SECRET_KEY_PASSWORD: ${{ secrets.OSSRH_PGP_SECRET_KEY_PASSWORD }}
-        run: ./gradlew publish
-        
+        run: ./gradlew publishToSonatype
+
       - name: Release
         if: github.ref == 'refs/heads/master'
         env:
@@ -67,4 +67,5 @@ jobs:
           OSSRH_PGP_SECRET_KEY: ${{ secrets.OSSRH_PGP_SECRET_KEY }}
           OSSRH_PGP_SECRET_KEY_PASSWORD: ${{ secrets.OSSRH_PGP_SECRET_KEY_PASSWORD }}
         run: |
-          ./gradlew publish closeAndReleaseRepository
+          ./gradlew release -Prelease.customUsername=${{ github.actor }} -Prelease.customPassword=${{ github.token }}
+          ./gradlew publishToSonatype closeAndReleaseSonatypeStagingRepository
