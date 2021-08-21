@@ -10,7 +10,7 @@ plugins {
 scmVersion {
     versionCreator "versionWithBranch"
     tag {
-        prefix = "functional-programming-"
+        prefix = "functional-programming"
         versionSeparator = ''
     }
 }
