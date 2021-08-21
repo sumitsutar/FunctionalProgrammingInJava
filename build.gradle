@@ -1,29 +1,52 @@
 plugins {
+    id "idea"
     id 'java-library'
-    id "maven-publish"
     id "io.github.gradle-nexus.publish-plugin" version "1.1.0"
     id 'io.codearte.nexus-staging' version '0.30.0'
+    id "pl.allegro.tech.build.axion-release" version "1.13.2"
+    id "com.github.ben-manes.versions" version "0.38.0"
 }
-group 'com.functional.programming'
-version '1.1'
+
+scmVersion {
+    versionCreator "versionWithBranch"
+    tag {
+        prefix = "functional-programming-"
+    }
+}
+project.version = scmVersion.version
+
+
 archivesBaseName = "functional-programming"
-sourceCompatibility = 1.8
 
-repositories {
-    mavenCentral()
-    jcenter()
+
+allprojects {
+    apply plugin: "idea"
+    apply plugin: "maven-publish"
+
+    group "com.functional.programming"
+    version = rootProject.version
+
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+
+    dependencies {
+        implementation 'org.projectlombok:lombok:1.18.10'
+        annotationProcessor 'org.projectlombok:lombok:1.18.10'
+        testCompile group: 'junit', name: 'junit', version: '4.12'
+        testCompile group: 'org.mockito', name: 'mockito-all', version: '1.8.4'
+    }
 }
 
-dependencies {
-    implementation 'org.projectlombok:lombok:1.18.10'
-    annotationProcessor 'org.projectlombok:lombok:1.18.10'
-    testCompile group: 'junit', name: 'junit', version: '4.12'
-    testCompile group: 'org.mockito', name: 'mockito-all', version: '1.8.4'
-}
+subprojects {
+    apply plugin: "java-library"
 
-
-ext {
-    gitUrl = "https://github.com/sumitsutar/FunctionalProgrammingInJava"
+    ext {
+        gitUrl = "https://github.com/sumitsutar/FunctionalProgrammingInJava"
     pomConfig = {
         licenses {
             license {
@@ -45,13 +68,15 @@ ext {
             url project.ext.gitUrl
         }
     }
+    }
+
 }
 
 nexusPublishing {
     packageGroup = "io.github.sumitsutar"
     repositories {
         sonatype {
-            nexusUrl.set(uri("https://s01.oss.sonatype.org/content/repositories/staging"))
+            nexusUrl.set(uri("https://s01.oss.sonatype.org/content/repositories/staging/"))
             snapshotRepositoryUrl.set(uri("https://s01.oss.sonatype.org/content/repositories/snapshots/"))
             username = System.getenv("OSSRH_USERNAME")
             password = System.getenv("OSSRH_PASSWORD")
@@ -65,4 +90,3 @@ nexusStaging {
     username = System.getenv("OSSRH_USERNAME")
     password = System.getenv("OSSRH_PASSWORD")
 }
-
