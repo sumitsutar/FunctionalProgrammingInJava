@@ -8,7 +8,7 @@ import java.util.List;
 public class Entry {
     public static void main(String[] args) {
         List<Person> people = Arrays.asList(
-                new Person("Monica", "Gellar", 25),
+                new Person("Monica", "Gellare", 25),
                 new Person("Ross", "Gellar", 25),
                 new Person("Chandler", "Bing", 25),
                 new Person("Joseph", "Tribiani", 25),
