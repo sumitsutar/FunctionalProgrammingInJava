@@ -49,7 +49,7 @@ allprojects {
     apply plugin: "idea"
     apply plugin: "maven-publish"
 
-    group "com.functional.programming"
+    group "io.github.sumitsutar"
     version = rootProject.version
 
     sourceCompatibility = 1.8
