@@ -13,7 +13,7 @@ scmVersion {
     versionCreator "versionWithBranch"
     tag {
         prefix = "functional-programming"
-        versionSeparator = ''
+        versionSeparator = '-'
     }
 }
 project.version = scmVersion.version
