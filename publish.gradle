@@ -24,6 +24,7 @@ publishing {
 signing {
     def signingKey = System.getenv("OSSRH_PGP_SECRET_KEY")
     def signingPassword = System.getenv("OSSRH_PGP_SECRET_KEY_PASSWORD")
+    useInMemoryPgpKeys("9FF1D3ED", signingKey, signingPassword)
     sign publishing.publications.lib
 }
 signLibPublication.enabled = gradle.startParameter.taskNames.contains("publishToSonatype")
