@@ -42,10 +42,8 @@ jobs:
           
       - name: List gpg home 
         run: |
-            ls -lrt ~/.gnupg   
-            echo "/Users/sumitsutar/.gnupg ==================================================>"
-            ls -lrt /Users/sumitsutar
-            
+            ls -lrt ~/.gnupg
+
       - name: Install gpg secret key
         env:
           OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
