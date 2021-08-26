@@ -43,3 +43,7 @@ jobs:
       - name: List gpg home 
         run: |
             ls -lrt ~/.gnupg   
+            echo "GRADLE HOME --> gradle.properties Location ==================================================>"
+            ls -lrt ~/.gradle/gradle.properties
+            echo "GRADLE HOME --> gradle.properties file ==================================================>"
+            cat ~/.gradle/gradle.properties
