@@ -29,7 +29,17 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 8
-          
+
+      - name: Install gpg secret key
+        env:
+          OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
+          OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
+          OSSRH_PGP_SECRET_KEY: ${{ secrets.OSSRH_PGP_SECRET_KEY }}
+          OSSRH_PGP_SECRET_KEY_PASSWORD: ${{ secrets.OSSRH_PGP_SECRET_KEY_PASSWORD }}
+        run: |
+          cat <(echo -e "${{ secrets.OSSRH_PGP_SECRET_KEY }}") | gpg --batch --import
+          gpg --list-secret-keys --keyid-format LONG
+    
       - name: Setup Gradle Cache
         uses: actions/cache@v2
         with:
@@ -58,7 +68,7 @@ jobs:
           OSSRH_PGP_SECRET_KEY: ${{ secrets.OSSRH_PGP_SECRET_KEY }}
           OSSRH_PGP_SECRET_KEY_PASSWORD: ${{ secrets.OSSRH_PGP_SECRET_KEY_PASSWORD }}
         run: ./gradlew publishToSonatype --stacktrace
-
+  
       - name: Release
         if: github.ref == 'refs/heads/master'
         env:
@@ -67,5 +77,5 @@ jobs:
           OSSRH_PGP_SECRET_KEY: ${{ secrets.OSSRH_PGP_SECRET_KEY }}
           OSSRH_PGP_SECRET_KEY_PASSWORD: ${{ secrets.OSSRH_PGP_SECRET_KEY_PASSWORD }}
         run: |
-          ./gradlew release -Prelease.customUsername=${{ github.actor }} -Prelease.customPassword=${{ github.token }}
-          ./gradlew publishAllPublicationsToSonatypeRepository closeAndReleaseSonatypeStagingRepository
+          ./gradlew release -Prelease.customUsername=${{ github.actor }} -Prelease.customPassword=${{ github.token }} --stacktrace
+          ./gradlew publishAllPublicationsToSonatypeRepository closeAndReleaseSonatypeStagingRepository --stacktrace
