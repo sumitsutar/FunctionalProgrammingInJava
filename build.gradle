@@ -2,7 +2,6 @@ plugins {
     id "idea"
     id 'java-library'
     id "io.github.gradle-nexus.publish-plugin" version "1.1.0"
-//    id 'io.codearte.nexus-staging' version '0.30.0'
     id "pl.allegro.tech.build.axion-release" version "1.13.3"
     id "com.github.ben-manes.versions" version "0.38.0"
 }
@@ -11,6 +10,7 @@ apply from: 'publish.gradle'
 
 scmVersion {
     versionCreator "versionWithBranch"
+    useHighestVersion = true
     tag {
         prefix = "functional-programming"
         versionSeparator = '-'
@@ -83,10 +83,3 @@ nexusPublishing {
         }
     }
 }
-
-//nexusStaging {
-//    packageGroup = "io.github.sumitsutar" //optional if packageGroup == project.getGroup()
-//    serverUrl = "https://s01.oss.sonatype.org/service/local/" //required only for projects registered in Sonatype after 2021-02-24
-//    username = System.getenv("OSSRH_USERNAME")
-//    password = System.getenv("OSSRH_PASSWORD")
-//}
