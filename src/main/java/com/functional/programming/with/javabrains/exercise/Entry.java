@@ -12,12 +12,11 @@ public class Entry {
                 new Person("Ross", "Gellar", 25),
                 new Person("Chandler", "Bing", 25),
                 new Person("Joseph", "Tribiani", 25),
-                new Person("Phoebe", "Buffay", 25)
+                new Person("Phoebe", "Buffay", 25),
+                new Person("Regina", "Philange", 25)
         );
         //Step 1 : sort the list by lastname
-
         //Step 2 : Create a method to print all the elements in the list
-
         //Step 3 : Create a method to return as list of people who's last name is Gellar
 
         //Step 1 - ANSWER
