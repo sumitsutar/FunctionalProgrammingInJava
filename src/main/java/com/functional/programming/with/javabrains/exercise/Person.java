@@ -1,6 +1,8 @@
 package com.functional.programming.with.javabrains.exercise;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
@@ -10,3 +12,4 @@ public class Person {
     String lastName;
     int age;
 }
+
